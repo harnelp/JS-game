@@ -1,6 +1,9 @@
-// generar numero aleatorio
+// variables
 let numeroSecreto = 0;
 let intentos = 0;
+let numeroMaximo = 10;
+// lista numeros sorteados
+let listaNumeros = [];
 
 //funcion generica para cambiar textos
 function asignarTextoElementos(elemento,texto){
@@ -27,7 +30,20 @@ function verificarIntento(){
 }
 
 function generarNumeroSecreto(){
-    return Math.floor(Math.random()*10)+1;
+    let numeroGnerado = Math.floor(Math.random()*numeroMaximo)+1;
+
+    console.log(listaNumeros)
+
+    if (listaNumeros.length == numeroMaximo) {
+        asignarTextoElementos('p', 'Ya se sortearon los # posibles')
+    }else{
+        if (listaNumeros.includes(numeroGnerado)) {
+            return generarNumeroSecreto();
+        }else{
+            listaNumeros.push(numeroGnerado);
+            return numeroGnerado;
+        }
+    }
 }
 
 function limpiarCaja(){
